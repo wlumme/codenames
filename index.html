@@ -1,24 +1,87 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script>
-            window.onload = function() {
-                for(var i = 0; i < 25; i++) {
-                    const grid = document.getElementById("grid") 
-                    grid.innerHTML += `<div id=${i}>Hello?</div>`
-                }
-            }
-        </script>
-        <style>
-            #grid {
-                display: grid;
-                grid-template-columns: repeat(5, auto);
-                grid-template-rows: repeat(5, auto);
-            }
-        </style>
-    </head>
-    <body>
-        <div id="grid"> 
-        </div>
-    </body>
+  <head>
+    <script>
+      function pop_random_items(items, n) {
+        let popped_items = [];
+        let items_length = items.length;
+
+        for (let i = 0; i < n; i++) {
+          item_index = Math.floor(Math.random() * (items_length - i));
+          popped_items.push(items[item_index]);
+          items.splice(item_index, 1);
+        }
+
+        return popped_items;
+      }
+
+      window.onload = function () {
+        const ids = [];
+        for (var id = 0; id < 25; id++) {
+          ids.push(id);
+        }
+
+        const blues = pop_random_items(ids, 5);
+        const reds = pop_random_items(ids, 5);
+        const blacks = pop_random_items(ids, 1);
+
+        const grid = document.getElementById("grid");
+
+        for (var i = 0; i < 25; i++) {
+          let color = "white";
+          if (blues.includes(i)) {
+            color = "blue";
+          } else if (reds.includes(i)) {
+            color = "red";
+          } else if (blacks.includes(i)) {
+            color = "black";
+          }
+
+          grid.innerHTML += `<div id=${i} class="${color}"></div>`;
+        }
+      };
+    </script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    <style>
+      body {
+        background-color: #aaa;
+      }
+    </style>
+    <style>
+      #grid {
+        display: grid;
+        grid-template-columns: repeat(5, auto);
+        grid-template-rows: repeat(5, auto);
+        column-gap: 1em;
+        row-gap: 1em;
+        height: 80vh;
+        width: 80vw;
+        margin: auto;
+        background-color: #222;
+        padding: 1em;
+        margin-top: 10vh;
+      }
+    </style>
+    <style>
+      .blue {
+        background-color: #00a;
+      }
+      .red {
+        background-color: #a00;
+      }
+      .black {
+        background-color: black;
+      }
+      .white {
+        background-color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="grid"></div>
+  </body>
 </html>
