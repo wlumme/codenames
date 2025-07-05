@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            window.onload = function() {
+                for(var i = 0; i < 25; i++) {
+                    const grid = document.getElementById("grid") 
+                    grid.innerHTML += `<div id=${i}>Hello?</div>`
+                }
+            }
+        </script>
+        <style>
+            #grid {
+                display: grid;
+                grid-template-columns: repeat(5, auto);
+                grid-template-rows: repeat(5, auto);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="grid"> 
+        </div>
+    </body>
+</html>
